@@ -1,14 +1,23 @@
 import { useState } from "react";
 import Navbar from "./Ui/Navbar";
 import MobileMenu from "./Ui/MobileMenu";
+import LoadingScreenAnimation from "./Ui/LoadingScreenAnimation";
+import Home from "./sections/Home";
+import AnimationWaves from "./Ui/AnimationWaves";
 
 function App() {
+ const [isLoading, setIsLoading] = useState(false);
  const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
-    <div className="text-3xl font-bold underline">
-<Navbar isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
-<MobileMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
-</div>
+    <>
+     {!isLoading && (
+        <LoadingScreenAnimation onComplete={() => setIsLoading(true)} />
+      )}
+      <Navbar isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
+      <MobileMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
+      <Home />
+      <AnimationWaves />
+      </>
   );
 }
 
